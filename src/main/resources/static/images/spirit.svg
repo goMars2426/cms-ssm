@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" width="200" height="240" role="img" aria-label="兜帽灵体">
+  <defs>
+    <linearGradient id="hoodGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3a2378"/>
+      <stop offset=".5" stop-color="#6d4de8"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="rimGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a78bfa"/>
+      <stop offset=".55" stop-color="#818cf8"/>
+      <stop offset="1" stop-color="#67e8f9"/>
+    </linearGradient>
+    <radialGradient id="faceGrad" cx=".4" cy=".3" r=".9">
+      <stop offset="0" stop-color="#080d2a"/>
+      <stop offset="1" stop-color="#150c3a"/>
+    </radialGradient>
+    <radialGradient id="haloGrad" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity=".55"/>
+      <stop offset=".6" stop-color="#6d4de8" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#6d4de8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="7" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style><![CDATA[
+      .sprite { animation: float 6s ease-in-out infinite; transform-origin: 100px 120px; }
+      .halo { animation: halo 5s ease-in-out infinite; transform-origin: 100px 120px; }
+      .eye { animation: eyePulse 3s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .smile { animation: smilePulse 3.6s ease-in-out infinite; }
+      .smoke1 { animation: smokeA 7s ease-in-out infinite; }
+      .smoke2 { animation: smokeB 8.5s ease-in-out infinite; }
+      .smoke3 { animation: smokeA 9s ease-in-out infinite; }
+      .rune { animation: runeBlink 3.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+      .r2 { animation-delay: .7s; } .r3 { animation-delay: 1.4s; }
+      .r4 { animation-delay: 2.1s; } .r5 { animation-delay: 2.8s; }
+      @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+      @keyframes halo { 0%,100% { opacity: .55; transform: scale(1); } 50% { opacity: .95; transform: scale(1.08); } }
+      @keyframes eyePulse { 0%,100% { opacity: .7; transform: scale(.92); } 50% { opacity: 1; transform: scale(1.12); } }
+      @keyframes smilePulse { 0%,100% { opacity: .65; } 50% { opacity: 1; } }
+      @keyframes smokeA { 0%,100% { transform: translateX(0); opacity: .5; } 50% { transform: translateX(5px); opacity: .95; } }
+      @keyframes smokeB { 0%,100% { transform: translateX(0); opacity: .45; } 50% { transform: translateX(-6px); opacity: .9; } }
+      @keyframes runeBlink { 0%,100% { opacity: .25; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.15); } }
+    ]]></style>
+  </defs>
+
+  <ellipse class="halo" cx="100" cy="118" rx="92" ry="108" fill="url(#haloGrad)"/>
+
+  <g class="sprite">
+    <!-- 兜帽 + 袍主轮廓（侧脸朝左，鼻/下巴转折明确） -->
+    <path d="M100 28
+             C145 28 168 60 168 100
+             C168 135 155 152 145 166
+             C138 176 142 186 150 194
+             C130 188 116 180 106 174
+             C90 184 70 182 58 170
+             C48 160 46 146 52 136
+             C42 130 36 122 36 112
+             C28 108 26 98 34 92
+             C42 86 48 78 52 66
+             C56 44 74 28 100 28 Z"
+          fill="url(#hoodGrad)" opacity=".92" filter="url(#softGlow)"/>
+
+    <!-- 帽檐弧线（兜帽感的关键：从额头沿脸侧绕到下巴） -->
+    <path d="M62 60
+             C54 78 48 90 42 96
+             C36 104 38 116 48 122
+             C46 134 52 146 62 154"
+          fill="none" stroke="url(#rimGrad)" stroke-width="2.6"
+          stroke-linecap="round" filter="url(#glow)"/>
+
+    <!-- 帽檐内脸区 -->
+    <path d="M66 66
+             C60 80 56 90 52 98
+             C48 104 50 114 58 120
+             C56 132 60 142 68 150
+             C64 136 66 116 70 104
+             C74 88 75 76 66 66 Z"
+          fill="url(#faceGrad)" opacity=".96"/>
+
+    <!-- 眼睛 -->
+    <ellipse class="eye" cx="62" cy="97" rx="4.2" ry="6.4" fill="#67e8f9" filter="url(#glow)"/>
+
+    <!-- 微笑 -->
+    <path class="smile" d="M54 119 Q63 126 72 118" fill="none" stroke="#67e8f9" stroke-width="2.4"
+          stroke-linecap="round" filter="url(#glow)"/>
+
+    <!-- 底部烟雾（细、弯、向右飘） -->
+    <path class="smoke1" d="M60 172 C48 190 70 202 56 220" fill="none" stroke="#818cf8"
+          stroke-width="2.4" stroke-linecap="round" opacity=".7" filter="url(#glow)"/>
+    <path class="smoke2" d="M96 176 C112 192 90 208 106 224" fill="none" stroke="#67e8f9"
+          stroke-width="2.4" stroke-linecap="round" opacity=".65" filter="url(#glow)"/>
+    <path class="smoke3" d="M132 172 C148 188 126 204 142 220" fill="none" stroke="#a78bfa"
+          stroke-width="2.2" stroke-linecap="round" opacity=".6" filter="url(#glow)"/>
+
+    <!-- 符文 / 代码光点 -->
+    <circle class="rune r1" cx="152" cy="68" r="3.4" fill="#a78bfa" filter="url(#glow)"/>
+    <path class="rune r2" d="M168 108 l5 5 -5 5" fill="none" stroke="#67e8f9" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+    <path class="rune r3" d="M28 150 l-5 5 5 5" fill="none" stroke="#a78bfa" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+    <circle class="rune r4" cx="150" cy="150" r="2.8" fill="#67e8f9" filter="url(#glow)"/>
+    <path class="rune r5" d="M96 38 l2.6 5.4 5.4 2.6 -5.4 2.6 -2.6 5.4 -2.6-5.4 -5.4-2.6 5.4-2.6 Z"
+          fill="#c4b5fd" filter="url(#glow)"/>
+  </g>
+</svg>
