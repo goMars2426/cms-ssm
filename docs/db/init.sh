@@ -2,13 +2,13 @@
 # 建库、建账号、导表结构与初始数据。
 #
 # 必须用 root 执行（本机 root 账号走 unix_socket 认证，普通用户连不上）：
-#   sudo bash db/init.sh
+#   sudo bash docs/db/init.sh
 #
 # 重复执行会清空 cms_db 下的所有表，只用于开发环境。
 set -euo pipefail
 
 if [[ ${EUID} -ne 0 ]]; then
-    echo "请用 root 执行：sudo bash db/init.sh" >&2
+    echo "请用 root 执行：sudo bash docs/db/init.sh" >&2
     exit 1
 fi
 
@@ -17,7 +17,7 @@ DB_USER="${DB_USER:-cmsapp}"
 DB_PASS="${DB_PASS:?请先设置 DB_PASS 环境变量}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SQL_DIR="${SCRIPT_DIR}/../src/main/resources/sql"
+SQL_DIR="${SCRIPT_DIR}/../../src/main/resources/sql"
 
 for f in "${SQL_DIR}/schema.sql" "${SQL_DIR}/data.sql"; do
     [[ -f "$f" ]] || { echo "缺少文件：$f" >&2; exit 1; }
